@@ -1,0 +1,69 @@
+public class Estudiante {
+    
+private final double[] notas;
+    private double mayorNota;
+    private double menorNota;
+    private int posicionMenorNota;
+    private double sumaNotas;
+    private int alumnosAprobados;
+
+    public Estudiante(double[] notas) {
+        this.notas = notas;
+        this.mayorNota = notas[0];
+        this.menorNota = notas[0];
+        this.posicionMenorNota = 0;
+        this.sumaNotas = 0;
+        this.alumnosAprobados = 0;
+    }
+
+    public double calcularMayorNota() {
+        for (double nota : notas) {
+            if (nota > mayorNota) {
+                mayorNota = nota;
+            }
+        }
+        return mayorNota;
+    }
+
+    public double calcularMenorNota() {
+        for (double nota : notas) {
+            if (nota < menorNota) {
+                menorNota = nota;
+            }
+        }
+        return menorNota;
+    }
+
+    public int calcularPosicionMenorNota() {
+        for (int i = 0; i < notas.length; i++) {
+            if (notas[i] < menorNota) {
+                menorNota = notas[i];
+                posicionMenorNota = i;
+            }
+        }
+        return posicionMenorNota;
+    }
+
+    public double calcularPromedio() {
+        for (double nota : notas) {
+            sumaNotas += nota;
+        }
+        return sumaNotas / notas.length;
+    }
+
+    public double calcularPorcentajeAprobados() {
+        for (double nota : notas) {
+            if (nota > 3.0) {
+                alumnosAprobados++;
+            }
+        }
+        return (alumnosAprobados / (double) notas.length) * 100;
+    }
+
+    public void mostrarResultados() {
+        System.out.println("La mayor nota es: " + calcularMayorNota());
+        System.out.println("El porcentaje de los alumnos aprobados es: " + calcularPorcentajeAprobados() + "%");
+        System.out.println("El promedio: " + calcularPromedio());
+        System.out.println("La posicion de la menor nota es: " + calcularPosicionMenorNota());
+    }
+}
